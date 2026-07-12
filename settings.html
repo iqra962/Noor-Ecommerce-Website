@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Settings — NOOR Atelier Console</title>
+  <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+
+  <div class="sidebar-scrim" id="sidebarScrim"></div>
+
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebarMount"></aside>
+
+    <div class="main-col">
+      <header class="topbar">
+        <button class="menu-toggle" id="menuToggle" aria-label="Open menu">☰</button>
+        <div class="topbar-titles">
+          <h1 id="pageTitle">Settings</h1>
+          <p id="pageSubtitle">Store profile, admin account and data management</p>
+        </div>
+        <div class="topbar-actions">
+          <span class="topbar-date" id="topbarDate"></span>
+          <button class="bell-btn" id="bellBtn" title="Alerts">🔔<span class="bell-dot" id="bellDot"></span></button>
+        </div>
+      </header>
+
+      <main class="content">
+        <div class="two-col">
+          <div class="panel-card">
+            <div class="panel-card-head">
+              <div>
+                <h2>Store profile</h2>
+                <p>Shown across the admin console</p>
+              </div>
+            </div>
+            <form id="storeForm">
+              <div class="form-grid">
+                <div class="field wide">
+                  <label for="storeName">Store name</label>
+                  <input type="text" id="storeName" required>
+                </div>
+                <div class="field">
+                  <label for="storeEmail">Contact email</label>
+                  <input type="email" id="storeEmail" required>
+                </div>
+                <div class="field">
+                  <label for="storePhone">Contact phone</label>
+                  <input type="text" id="storePhone" required>
+                </div>
+                <div class="field">
+                  <label for="storeCurrency">Currency prefix</label>
+                  <input type="text" id="storeCurrency" required placeholder="Rs.">
+                  <span class="field-hint">Used when formatting prices across the admin panel</span>
+                </div>
+              </div>
+              <div class="modal-actions" style="margin-top:18px;">
+                <button type="submit" class="btn btn-accent">Save Store Profile</button>
+              </div>
+            </form>
+          </div>
+
+          <div class="panel-card">
+            <div class="panel-card-head">
+              <div>
+                <h2>Admin account</h2>
+                <p>Used to sign in to this console</p>
+              </div>
+            </div>
+            <form id="accountForm">
+              <div class="field" style="margin-bottom:14px;">
+                <label for="accountName">Display name</label>
+                <input type="text" id="accountName" required>
+              </div>
+              <div class="field" style="margin-bottom:14px;">
+                <label for="accountEmail">Login email</label>
+                <input type="email" id="accountEmail" required>
+              </div>
+              <div class="field" style="margin-bottom:14px;">
+                <label for="accountPassword">New password</label>
+                <input type="password" id="accountPassword" placeholder="Leave blank to keep current password">
+              </div>
+              <div class="modal-actions" style="margin-top:4px;">
+                <button type="submit" class="btn btn-accent">Update Account</button>
+              </div>
+            </form>
+          </div>
+        </div>
+
+        <div class="panel-card">
+          <div class="panel-card-head">
+            <div>
+              <h2>Data management</h2>
+              <p>The admin panel stores its data locally in this browser</p>
+            </div>
+          </div>
+          <div class="row-flex" style="flex-wrap:wrap; gap:14px;">
+            <button class="btn btn-outline" id="exportAllBtn">Export All Data (JSON)</button>
+            <button class="btn btn-outline" id="reseedBtn">Reset Product Catalog to Defaults</button>
+            <button class="btn btn-danger" id="clearOrdersBtn">Clear All Orders</button>
+          </div>
+          <p style="font-family:Arial, sans-serif; font-size:12px; color:var(--muted); margin-top:16px; margin-bottom:0;">
+            Products, orders and customers are stored in this browser's local storage, the same place the NOOR storefront keeps its data. Clearing browser data will remove it.
+          </p>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <!-- Confirm clear orders -->
+  <div class="modal-overlay" id="clearOrdersModal">
+    <div class="modal-box">
+      <div class="modal-head">
+        <div>
+          <h2>Clear all orders?</h2>
+          <p>This permanently deletes every order on record. This can't be undone.</p>
+        </div>
+        <button class="modal-close" onclick="closeModal('clearOrdersModal')" aria-label="Close">&times;</button>
+      </div>
+      <div class="modal-actions">
+        <button class="btn btn-outline" onclick="closeModal('clearOrdersModal')">Cancel</button>
+        <button class="btn btn-danger" id="confirmClearOrdersBtn">Clear Orders</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast" id="toast"></div>
+
+  <script src="admin.js"></script>
+  <script src="settings.js"></script>
+</body>
+</html>

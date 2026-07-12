@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Orders — NOOR Atelier Console</title>
+  <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+
+  <div class="sidebar-scrim" id="sidebarScrim"></div>
+
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebarMount"></aside>
+
+    <div class="main-col">
+      <header class="topbar">
+        <button class="menu-toggle" id="menuToggle" aria-label="Open menu">☰</button>
+        <div class="topbar-titles">
+          <h1 id="pageTitle">Orders</h1>
+          <p id="pageSubtitle">Track and update every order placed on the storefront</p>
+        </div>
+        <div class="topbar-actions">
+          <span class="topbar-date" id="topbarDate"></span>
+          <button class="bell-btn" id="bellBtn" title="Alerts">🔔<span class="bell-dot" id="bellDot"></span></button>
+        </div>
+      </header>
+
+      <main class="content">
+        <div class="panel-card">
+          <div class="panel-card-head">
+            <div>
+              <h2>All orders</h2>
+              <p id="orderCountLabel">0 orders</p>
+            </div>
+            <button class="btn btn-outline btn-sm" id="exportOrdersBtn">Export CSV</button>
+          </div>
+
+          <div class="toolbar">
+            <input type="search" id="orderSearch" placeholder="Search order ID, name or email…">
+            <select id="statusFilter">
+              <option value="All">All statuses</option>
+            </select>
+            <div class="spacer"></div>
+          </div>
+
+          <div class="table-scroll">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th class="sortable" data-sort="orderId">Order <span class="sort-arrow">↕</span></th>
+                  <th>Customer</th>
+                  <th>Items</th>
+                  <th class="sortable" data-sort="grand">Total <span class="sort-arrow">↕</span></th>
+                  <th>Payment</th>
+                  <th>Status</th>
+                  <th class="sortable" data-sort="createdAt">Placed <span class="sort-arrow">↕</span></th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody id="ordersBody"></tbody>
+            </table>
+          </div>
+          <div id="ordersEmpty" class="empty-state" hidden>
+            <div class="glyph">▤</div>
+            <h3>No orders found</h3>
+            <p>Try a different search, or wait for storefront orders to arrive.</p>
+          </div>
+
+          <div class="pagination" id="ordersPagination"></div>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <!-- Order detail modal -->
+  <div class="modal-overlay" id="orderModal">
+    <div class="modal-box wide">
+      <div class="modal-head">
+        <div>
+          <h2 id="orderModalTitle">Order</h2>
+          <p id="orderModalSubtitle"></p>
+        </div>
+        <button class="modal-close" onclick="closeModal('orderModal')" aria-label="Close">&times;</button>
+      </div>
+
+      <div class="detail-grid">
+        <div class="detail-block">
+          <span class="mono">Customer</span>
+          <strong id="detailCustomer"></strong>
+          <div style="font-family:Arial, sans-serif; font-size:12px; color:var(--muted); margin-top:4px;" id="detailContact"></div>
+        </div>
+        <div class="detail-block">
+          <span class="mono">Delivery address</span>
+          <div style="font-family:Arial, sans-serif; font-size:13px;" id="detailAddress"></div>
+        </div>
+        <div class="detail-block">
+          <span class="mono">Payment method</span>
+          <strong id="detailPayment"></strong>
+          <div style="font-family:Arial, sans-serif; font-size:12px; color:var(--muted); margin-top:4px;" id="detailReference"></div>
+        </div>
+        <div class="detail-block">
+          <span class="mono">Status</span>
+          <select class="status-select" id="detailStatusSelect" style="margin-top:4px;"></select>
+        </div>
+      </div>
+
+      <h3 style="margin-bottom:4px;">Items</h3>
+      <div id="detailItems"></div>
+
+      <div class="totals-block" id="detailTotals"></div>
+
+      <div class="modal-actions">
+        <button class="btn btn-outline" id="deleteOrderBtn">Delete Order</button>
+        <button class="btn btn-accent" id="saveOrderStatusBtn">Save Status</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast" id="toast"></div>
+
+  <script src="admin.js"></script>
+  <script src="orders.js"></script>
+</body>
+</html>
