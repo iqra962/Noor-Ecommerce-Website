@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Sign in — NOOR Atelier Console</title>
+  <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+
+  <div class="login-shell">
+    <div class="login-visual">
+      <div class="sidebar-brand">
+        <div class="sidebar-mark" style="background:#000;"></div>
+        <div class="sidebar-brand-text">
+          <strong style="color:#fff;">NOOR</strong>
+          <span>Atelier Console</span>
+        </div>
+      </div>
+      <div class="login-visual-quote">
+        <div class="mono">Back of House</div>
+        <h2>Every order, every ledger,<br>every thread — in one place.</h2>
+      </div>
+      <p style="font-family:Arial, sans-serif; font-size:11px; color:#8a8072; position:relative; z-index:1;">&copy; 2026 NOOR — Fashion Hub. Internal use only.</p>
+    </div>
+
+    <div class="login-form-side">
+      <div class="login-card">
+        <div class="sidebar-brand">
+          <div class="sidebar-mark"></div>
+          <div class="sidebar-brand-text">
+            <strong>NOOR</strong>
+            <span>Atelier Console</span>
+          </div>
+        </div>
+        <h1>Welcome back</h1>
+        <p class="lead">Sign in to manage products, orders and customers.</p>
+
+        <p class="form-error" id="loginError"></p>
+
+        <form class="login-form" id="loginForm">
+          <div class="field">
+            <label for="email">Email address</label>
+            <input type="email" id="email" required placeholder="admin@noor.com" autocomplete="username">
+          </div>
+          <div class="field">
+            <label for="password">Password</label>
+            <input type="password" id="password" required placeholder="Enter password" autocomplete="current-password">
+          </div>
+          <label style="display:flex; align-items:center; gap:8px; font-family:Arial, sans-serif; font-size:12.5px; color:var(--muted);">
+            <input type="checkbox" id="remember" style="width:auto;"> Keep me signed in on this device
+          </label>
+          <button class="btn btn-accent" type="submit" style="justify-content:center; padding:14px;">Sign In</button>
+        </form>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="toast" id="toast"></div>
+
+  <script src="admin.js"></script>
+  <script src="admin-login.js"></script>
+</body>
+</html>
