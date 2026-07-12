@@ -1,0 +1,343 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>NOOR - Fashion Hub</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <header class="topbar">
+    <button class="brand" data-view="home">
+      <div class="logo-container" aria-hidden="true">
+        <div class="ring-logo">
+          <div class="diamond"></div>
+          <div class="black-circle">
+            <div class="white-ring"></div>
+          </div>
+        </div>
+        <span class="brand-text">NOOR</span>
+      </div>
+    </button>
+    <nav class="nav" aria-label="Store categories">
+      <button data-filter="Women">Women</button>
+      <button data-filter="Men">Men</button>
+      <button data-filter="Children">Children</button>
+      <button data-filter="Jewelry">Jewelry</button>
+      <button data-filter="Cosmetics">Cosmetics</button>
+      <button data-filter="Shoes">Shoes</button>
+    </nav>
+    <div class="header-actions">
+      <button class="cart-toggle" id="openCart" aria-label="Open cart">
+        <span class="bag-icon" aria-hidden="true"></span>
+        <span class="cart-count" id="cartCount">0</span>
+      </button>
+      <button class="login-btn" type="button"><span aria-hidden="true"></span> Login</button>
+      <div class="profile-menu-wrapper" hidden>
+        <button class="profile-toggle" type="button" aria-haspopup="true" aria-expanded="false">
+          <span class="profile-avatar" aria-hidden="true"></span>
+          <span class="profile-toggle-text">Hi User</span>
+        </button>
+        <div class="profile-menu" role="menu" hidden>
+          <a class="profile-menu-item" href="user-dashboard.html">Dashboard</a>
+          <a class="profile-menu-item" href="settings.html">Settings</a>
+          <button class="profile-menu-item" type="button" data-action="signout">Sign Out</button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="hero-copy">
+        <div class="mono eyebrow" id="heroEyebrow">Bridal Collection</div>
+        <h1 id="heroTitle">Emerald <span>Reverie</span></h1>
+        <div class="actions">
+          <button class="btn" data-scroll="shop">SHOP NOW</button>
+        </div>
+      </div>
+      <div class="hero-progress" aria-label="Hero slider">
+        <button type="button" data-hero-slide="0" aria-label="Show slide 1"></button>
+        <button class="active" type="button" data-hero-slide="1" aria-label="Show slide 2"></button>
+        <button type="button" data-hero-slide="2" aria-label="Show slide 3"></button>
+        <button type="button" data-hero-slide="3" aria-label="Show slide 4"></button>
+        <button type="button" data-hero-slide="4" aria-label="Show slide 5"></button>
+        <button type="button" data-hero-slide="5" aria-label="Show slide 6"></button>
+        <strong id="heroCounter">01 / 06</strong>
+      </div>
+    </section>
+
+    <section class="section" id="shop">
+      <div class="section-head">
+        <div>
+          <div class="mono eyebrow">The Collection</div>
+          <h2 id="collectionTitle">Everything</h2>
+        </div>
+      </div>
+      <div class="toolbar">
+        <input class="search" id="search" type="search" placeholder="Search products, category, or color">
+        <select id="sort" aria-label="Sort products">
+          <option value="featured">Featured</option>
+          <option value="low">Price: Low to High</option>
+          <option value="high">Price: High to Low</option>
+          <option value="name">Name</option>
+        </select>
+      </div>
+      <div class="filters" id="subFilters"></div>
+      <div class="grid" id="productGrid"></div>
+      <div class="empty" id="emptyState" hidden>No matching products found.</div>
+    </section>
+
+    <section class="checkout" id="checkout">
+      <div class="section">
+        <div class="section-head">
+          <div>
+            <div class="mono eyebrow">Local Checkout</div>
+            <h2>Order Details</h2>
+          </div>
+        </div>
+        <div class="checkout-grid">
+          <form class="panel" id="orderForm">
+            <div class="field-grid">
+              <label>Full Name
+                <input id="name" required placeholder="Your name">
+              </label>
+              <label>Phone
+                <input id="phone" required placeholder="03xx xxxxxxx">
+              </label>
+              <label class="wide">Address
+                <textarea id="address" rows="3" required placeholder="Delivery address"></textarea>
+              </label>
+              <label>Payment
+                <select id="payment">
+                  <option>Cash on Delivery</option>
+                  <option>EasyPaisa</option>
+                  <option>JazzCash</option>
+                  <option>Bank Transfer</option>
+                </select>
+              </label>
+              <label>Reference
+                <input id="reference" placeholder="Optional TID / slip number">
+              </label>
+            </div>
+            <p class="notice" id="orderNotice" hidden></p>
+            <div class="actions" style="margin-top: 20px;">
+              <button class="btn" type="submit">Place Local Order</button>
+            </div>
+          </form>
+          <aside class="panel" id="checkoutSummary"></aside>
+        </div>
+      </div>
+    </section>
+
+    <section class="dashboard-panel panel" id="userDashboardPanel" hidden>
+      <div class="dashboard-grid">
+        <aside class="dashboard-sidebar">
+          <div class="dashboard-sidebar-head">
+            <h3>Dashboard</h3>
+          </div>
+          <div class="dashboard-user-card">
+            <div class="dashboard-avatar">N</div>
+            <div>
+              <p class="dashboard-welcome">Welcome back,</p>
+              <strong id="dashboardUserName">Customer</strong>
+              <span class="dashboard-status">Gold Member</span>
+            </div>
+          </div>
+          <nav class="dashboard-nav">
+            <button type="button" class="dashboard-nav-item active">Overview</button>
+            <button type="button" class="dashboard-nav-item">My Orders</button>
+            <button type="button" class="dashboard-nav-item">Wishlist</button>
+            <button type="button" class="dashboard-nav-item">Wallet</button>
+            <button type="button" class="dashboard-nav-item">Addresses</button>
+            <button type="button" class="dashboard-nav-item" data-action="signout">Log Out</button>
+          </nav>
+        </aside>
+
+        <div class="dashboard-main">
+          <div class="panel-head">
+            <h3>Your Dashboard</h3>
+            <button class="btn" id="closeDashboardPanel" type="button">Close</button>
+          </div>
+
+          <div class="dashboard-summary-cards">
+            <article class="dashboard-card dashboard-summary-card">
+              <p>Total Orders</p>
+              <strong id="dashboardTotalOrders">0</strong>
+            </article>
+            <article class="dashboard-card dashboard-summary-card">
+              <p>Wallet Balance</p>
+              <strong id="dashboardWalletBalance">Rs. 4,500</strong>
+            </article>
+            <article class="dashboard-card dashboard-summary-card">
+              <p>Wishlist Items</p>
+              <strong id="dashboardWishlistCount">0</strong>
+            </article>
+          </div>
+
+          <section class="dashboard-section">
+            <div class="section-head">
+              <h4>Recent Orders</h4>
+            </div>
+            <div class="dashboard-orders" id="dashboardOrders"></div>
+          </section>
+
+          <div class="dashboard-account-grid">
+            <article class="dashboard-card dashboard-account-card" id="dashboardInfo"></article>
+            <article class="dashboard-card dashboard-address-card">
+              <h4>Saved Addresses</h4>
+              <p id="dashboardSavedAddress">No saved address yet.</p>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <aside class="drawer" id="cartDrawer" aria-label="Shopping cart">
+    <div class="drawer-head">
+      <h2 style="font-size: 32px;">Your Cart</h2>
+      <button class="icon-btn" id="closeCart" aria-label="Close cart">x</button>
+    </div>
+    <div class="cart-items" id="cartItems"></div>
+    <div class="drawer-foot" id="cartSummary"></div>
+  </aside>
+
+  <div class="toast" id="toast"></div>
+
+  <div id="loginModal" class="modal" style="display: none;" aria-hidden="true" role="dialog">
+  <div class="modal-content">
+    <button class="close-modal" id="closeLogin" aria-label="Close modal">&times;</button>
+    
+    <div class="modal-header">
+      <h2 class="brand-font">NOOR</h2>
+      <p class="subtitle" id="authSubtitle">Sign in to your Fashion Hub account</p>
+      <p class="notice" id="authMessage" hidden></p>
+    </div>
+    
+    <form id="loginForm">
+      <div class="form-group">
+        <label for="loginEmail">Email Address</label>
+        <input type="email" id="loginEmail" required placeholder="Enter your email address">
+      </div>
+      
+      <div class="form-group">
+        <label for="loginPassword">Password</label>
+        <input type="password" id="loginPassword" required placeholder="Enter your password">
+      </div>
+      
+      <div class="form-actions">
+        <a href="#" class="forgot-link">Forgot password?</a>
+      </div>
+      <div class="social-divider">
+  <span>OR CONTINUE WITH</span>
+</div>
+
+<div class="social-login-group">
+  <button type="button" class="btn-social" data-provider="google">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg" alt="Google">
+    Google
+  </button>
+  <button type="button" class="btn-social" data-provider="facebook">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/0/05/Facebook_Logo_%282019%29.png" alt="Facebook">
+    Facebook
+  </button>
+  <button type="button" class="btn-social" data-provider="apple">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_logo_black.svg" alt="Apple">
+    Apple
+  </button>
+</div>
+      <button type="submit" class="btn-primary">Sign In</button>
+      
+      <p class="register-prompt">Don't have an account? <a href="#" id="showRegister">Sign up</a></p>
+      
+    </form>
+
+    <form id="signupForm" style="display: none;">
+      <div class="form-group">
+        <label for="signupName">Full Name</label>
+        <input type="text" id="signupName" required placeholder="Enter your full name">
+      </div>
+
+      <div class="form-group">
+        <label for="signupEmail">Email Address</label>
+        <input type="email" id="signupEmail" required placeholder="Enter your email address">
+      </div>
+
+      <div class="form-group">
+        <label for="signupPassword">Password</label>
+        <input type="password" id="signupPassword" required placeholder="Create a password">
+      </div>
+
+      <button type="submit" class="btn-primary">Create Account</button>
+      <p class="register-prompt">Already have an account? <a href="#" id="showLogin">Log in</a></p>
+    </form>
+  </div>
+</div>
+
+
+  <div class="chatbot-wrapper">
+    <button class="chatbot-trigger" id="chatbotTrigger" aria-label="Open AI Assistant">
+      <img src="robot.png" alt="3D Robot Assistant" class="floating-robot-img">
+      <span class="online-indicator-ping"></span>
+    </button>
+
+    <div class="chat-window" id="chatWindow">
+      <div class="chat-header">
+        <div class="header-bot-info">
+          <div class="mini-avatar-holder">
+            <img src="robot.png" alt="Avatar">
+          </div>
+          <div>
+            <h3>Chat with us</h3>
+            <p><span class="online-dot"></span> We're online and here to help!</p>
+          </div>
+        </div>
+        <button class="close-chat" id="closeChat">&times;</button>
+      </div>
+
+      <div class="chat-messages" id="chatMessages">
+        <div class="msg bot-msg">
+          <p>Hi there! 👋<br>How can I help you today?</p>
+          <span class="msg-time">10:30 AM</span>
+        </div>
+      </div>
+
+      <div class="chat-features-rack">
+        <button class="feature-badge" data-action="cart">
+          <span class="badge-icon">🛒</span>
+          <span class="badge-text">Cart</span>
+        </button>
+        <button class="feature-badge" data-action="order">
+          <span class="badge-icon">📦</span>
+          <span class="badge-text">Track Order</span>
+        </button>
+        <button class="feature-badge" data-action="shoes">
+          <span class="badge-icon">👟</span>
+          <span class="badge-text">Shoes</span>
+        </button>
+      </div>
+
+      <div class="chat-footer">
+        <div class="input-container-box">
+          <input type="text" id="chatInput" placeholder="Type your message...">
+          <button id="sendMessageBtn" aria-label="Send message">
+            <svg viewBox="0 0 24 24" width="20" height="20"><path fill="currentColor" d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
+          </button>
+        </div>
+      </div>
+      <div class="chat-powered">✨ Powered by NOOR AI Assistant</div>
+    </div>
+  </div>
+
+  <footer class="footer">
+    &copy; 2026 NOOR - Fashion Hub.
+  </footer>
+  <script src="script.js"></script>
+</body>
+
+</html>
