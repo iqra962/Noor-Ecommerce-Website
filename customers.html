@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Customers — NOOR Atelier Console</title>
+  <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+
+  <div class="sidebar-scrim" id="sidebarScrim"></div>
+
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebarMount"></aside>
+
+    <div class="main-col">
+      <header class="topbar">
+        <button class="menu-toggle" id="menuToggle" aria-label="Open menu">☰</button>
+        <div class="topbar-titles">
+          <h1 id="pageTitle">Customers</h1>
+          <p id="pageSubtitle">Everyone who has created an account on the storefront</p>
+        </div>
+        <div class="topbar-actions">
+          <span class="topbar-date" id="topbarDate"></span>
+          <button class="bell-btn" id="bellBtn" title="Alerts">🔔<span class="bell-dot" id="bellDot"></span></button>
+        </div>
+      </header>
+
+      <main class="content">
+        <div class="panel-card">
+          <div class="panel-card-head">
+            <div>
+              <h2>All customers</h2>
+              <p id="customerCountLabel">0 customers</p>
+            </div>
+            <button class="btn btn-outline btn-sm" id="exportCustomersBtn">Export CSV</button>
+          </div>
+
+          <div class="toolbar">
+            <input type="search" id="customerSearch" placeholder="Search name or email…">
+            <div class="spacer"></div>
+          </div>
+
+          <div class="table-scroll">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th class="sortable" data-sort="name">Customer <span class="sort-arrow">↕</span></th>
+                  <th class="sortable" data-sort="orderCount">Orders <span class="sort-arrow">↕</span></th>
+                  <th class="sortable" data-sort="totalSpent">Total Spent <span class="sort-arrow">↕</span></th>
+                  <th>Last Order</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody id="customersBody"></tbody>
+            </table>
+          </div>
+          <div id="customersEmpty" class="empty-state" hidden>
+            <div class="glyph">◐</div>
+            <h3>No customers yet</h3>
+            <p>Accounts created on the storefront will appear here.</p>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <!-- Customer detail modal -->
+  <div class="modal-overlay" id="customerModal">
+    <div class="modal-box wide">
+      <div class="modal-head">
+        <div>
+          <h2 id="customerModalTitle">Customer</h2>
+          <p id="customerModalSubtitle"></p>
+        </div>
+        <button class="modal-close" onclick="closeModal('customerModal')" aria-label="Close">&times;</button>
+      </div>
+      <div class="detail-grid">
+        <div class="detail-block">
+          <span class="mono">Total orders</span>
+          <strong id="customerOrderCount"></strong>
+        </div>
+        <div class="detail-block">
+          <span class="mono">Total spent</span>
+          <strong id="customerTotalSpent"></strong>
+        </div>
+      </div>
+      <h3 style="margin-bottom:8px;">Order history</h3>
+      <div id="customerOrderList"></div>
+    </div>
+  </div>
+
+  <div class="toast" id="toast"></div>
+
+  <script src="admin.js"></script>
+  <script src="customers.js"></script>
+</body>
+</html>
